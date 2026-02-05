@@ -24,7 +24,7 @@ public class DbInitializer
                 PictureUrl = "/images/products/sb-ang1.png",
                 Brand = "Angular",
                 Type = "Boards",
-                Quantity = 100
+                QuantityInStock = 100
             },
             new() {
                 Name = "Green Angular Board 3000",
@@ -33,7 +33,7 @@ public class DbInitializer
                 PictureUrl = "/images/products/sb-ang2.png",
                 Brand = "Angular",
                 Type = "Boards",
-                Quantity = 100
+                QuantityInStock = 100
             },
             new() {
                 Name = "Core Board Speed Rush 3",
@@ -43,7 +43,7 @@ public class DbInitializer
                 PictureUrl = "/images/products/sb-core1.png",
                 Brand = "NetCore",
                 Type = "Boards",
-                Quantity = 100
+                QuantityInStock = 100
             },
             new() {
                 Name = "Net Core Super Board",
@@ -53,7 +53,7 @@ public class DbInitializer
                 PictureUrl = "/images/products/sb-core2.png",
                 Brand = "NetCore",
                 Type = "Boards",
-                Quantity = 100
+                QuantityInStock = 100
             },
         };
 

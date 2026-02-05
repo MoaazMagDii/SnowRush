@@ -19,7 +19,7 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors(policy => 
-    policy.AllowAnyHeader().AllowAnyMethod()
+    policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
     .WithOrigins("https://localhost:3000")
 );
 
