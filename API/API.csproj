@@ -16,6 +16,7 @@
     <Folder Include="Data\Migrations\" />
     <Folder Include="DTOs\" />
     <Folder Include="ExtensionMethods\" />
+    <Folder Include="RequestHelpers\" />
   </ItemGroup>
 
 </Project>

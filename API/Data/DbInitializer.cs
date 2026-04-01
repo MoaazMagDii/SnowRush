@@ -31,8 +31,8 @@ public class DbInitializer
                 Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
                 Price = 15000,
                 PictureUrl = "/images/products/sb-ang2.png",
-                Brand = "Angular",
-                Type = "Boards",
+                Brand = "React",
+                Type = "Hats",
                 QuantityInStock = 100
             },
             new() {
@@ -42,7 +42,7 @@ public class DbInitializer
                 Price = 18000,
                 PictureUrl = "/images/products/sb-core1.png",
                 Brand = "NetCore",
-                Type = "Boards",
+                Type = "Gloves",
                 QuantityInStock = 100
             },
             new() {
@@ -51,8 +51,8 @@ public class DbInitializer
                     "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
                 Price = 30000,
                 PictureUrl = "/images/products/sb-core2.png",
-                Brand = "NetCore",
-                Type = "Boards",
+                Brand = "Redis",
+                Type = "Boots",
                 QuantityInStock = 100
             },
         };
