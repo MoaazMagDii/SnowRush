@@ -13,7 +13,7 @@ public class BasketController(StoreContext context) : BaseApiController
     [HttpGet]
     public async Task<ActionResult<BasketDto>> GetBasket()
     {
-        var basket = await RetrieveBasket();
+        var basket = await context.Baskets.GetBasketWithItems(Request.Cookies["basketId"]);
         if (basket == null) return NoContent();
         return basket.ToDto();
     }
@@ -21,7 +21,8 @@ public class BasketController(StoreContext context) : BaseApiController
     [HttpPost]
     public async Task<ActionResult<BasketDto>> AddItemToBasket(int productId, int quantity)
     {
-        var basket = await RetrieveBasket() ?? CreateBasket();
+        var basket = await context.Baskets.GetBasketWithItems(Request.Cookies["basketId"])
+        ?? CreateBasket();
 
         var product = await context.Products.FindAsync(productId);
         if (product == null) return BadRequest("Problem adding item to basket");
@@ -44,7 +45,7 @@ public class BasketController(StoreContext context) : BaseApiController
         var product = await context.Products.FindAsync(productId);
         if (product == null) return BadRequest("Problem removing item from basket");
 
-        var basket = await RetrieveBasket();
+        var basket = await context.Baskets.GetBasketWithItems(Request.Cookies["basketId"]);
         if (basket == null) return BadRequest("Unable to retrieve basket");
 
 
@@ -79,14 +80,4 @@ public class BasketController(StoreContext context) : BaseApiController
         context.Baskets.Add(basket);
         return basket;
     }
-
-    private async Task<Basket?> RetrieveBasket()
-    {
-        return await context.Baskets
-            .Include(x => x.Items)
-            .ThenInclude(x => x.Product)
-            .FirstOrDefaultAsync(x => x.BasketId == Request.Cookies["basketId"]);
-    }
-
-
 }

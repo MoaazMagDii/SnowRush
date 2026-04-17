@@ -3,8 +3,12 @@ using API.Entities;
 using API.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using DotNetEnv;
+using API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+Env.Load("variable.env");
+builder.Configuration.AddEnvironmentVariables();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -14,6 +18,7 @@ builder.Services.AddDbContext<StoreContext>(options =>
 });
 builder.Services.AddCors();
 builder.Services.AddTransient<ExceptionMiddleware>();
+builder.Services.AddScoped<PaymentService>();
 
 builder.Services.AddIdentityApiEndpoints<User>(opt =>
 {
@@ -40,8 +45,9 @@ app.MapGroup("api").MapIdentityApi<User>();
 
 
 
+
 // Seed the database
-DbInitializer.InitializeDbAsync(app);
+await DbInitializer.InitializeDbAsync(app);
 
 
 app.Run();
