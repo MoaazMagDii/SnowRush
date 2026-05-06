@@ -18,6 +18,7 @@
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
     <Folder Include="DTOs\" />
+    <Folder Include="Entities\OrderAggregate\" />
     <Folder Include="ExtensionMethods\" />
     <Folder Include="RequestHelpers\" />
     <Folder Include="Services\" />

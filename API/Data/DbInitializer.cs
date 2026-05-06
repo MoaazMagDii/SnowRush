@@ -12,6 +12,29 @@ public class DbInitializer
         var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
         context.Database.EnsureCreated();
 
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        
+        // Create roles if they don't exist
+        if (!await roleManager.RoleExistsAsync("Member"))
+        {
+            await roleManager.CreateAsync(new IdentityRole
+            {
+                Id = "e069461a-10cf-4abf-9930-d070b2a7e40f",
+                ConcurrencyStamp = "Member",
+                Name = "Member",
+                NormalizedName = "MEMBER"
+            });
+
+            await roleManager.CreateAsync(new IdentityRole
+            {
+                Id = "ed2e9149-fa53-484c-a93f-bd33f9e9fcf6",
+                ConcurrencyStamp = "Admin",
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            });
+
+        }
+        
 
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
         if (!userManager.Users.Any())
@@ -41,9 +64,8 @@ public class DbInitializer
         var products = new List<Product>
         {
             new() {
-                Name = "Angular Speedster Board 2000",
-                Description =
-                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+                Name = "Product 1",
+                Description = "Lorem ipsum dolor tosuere, ma eros quis urna.",
                 Price = 20000,
                 PictureUrl = "/images/products/sb-ang1.png",
                 Brand = "Angular",
@@ -51,7 +73,7 @@ public class DbInitializer
                 QuantityInStock = 100
             },
             new() {
-                Name = "Green Angular Board 3000",
+                Name = "Product 2",
                 Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
                 Price = 15000,
                 PictureUrl = "/images/products/sb-ang2.png",
@@ -60,9 +82,8 @@ public class DbInitializer
                 QuantityInStock = 100
             },
             new() {
-                Name = "Core Board Speed Rush 3",
-                Description =
-                    "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+                Name = "Product 3",
+                Description = "Lorem ipsum dolor tosuere, ma eros quis urna.",
                 Price = 18000,
                 PictureUrl = "/images/products/sb-core1.png",
                 Brand = "NetCore",
@@ -70,9 +91,8 @@ public class DbInitializer
                 QuantityInStock = 100
             },
             new() {
-                Name = "Net Core Super Board",
-                Description =
-                    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+                Name = "Product 4",
+                Description = "Lorem ipsum dolor tosuere, ma eros quis urna.",
                 Price = 30000,
                 PictureUrl = "/images/products/sb-core2.png",
                 Brand = "Redis",

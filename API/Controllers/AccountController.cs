@@ -1,6 +1,7 @@
 using System;
 using API.DTOs;
 using API.Entities;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,12 +22,10 @@ public class AccountController(SignInManager<User> signInManager) : BaseApiContr
         return Ok();
     }
 
-    
+    [Authorize]
     [HttpGet("user-info")]
     public async Task<ActionResult> GetUserInfo()
     {
-        if (User.Identity?.IsAuthenticated == false) return NoContent();
-
         var user = await signInManager.UserManager.GetUserAsync(User);
 
         if (user == null) return Unauthorized();

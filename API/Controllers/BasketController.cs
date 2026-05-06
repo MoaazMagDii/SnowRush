@@ -27,9 +27,7 @@ public class BasketController(StoreContext context) : BaseApiController
         var product = await context.Products.FindAsync(productId);
         if (product == null) return BadRequest("Problem adding item to basket");
 
-        if (quantity <= 0) throw new ArgumentException("Quantity must be greater than zero.");
-        if (quantity > product.QuantityInStock) throw new ArgumentException("Quantity exceeds available stock.");
-
+        
         basket.AddItem(product, quantity);
         product.QuantityInStock -= quantity;
 
@@ -48,14 +46,8 @@ public class BasketController(StoreContext context) : BaseApiController
         var basket = await context.Baskets.GetBasketWithItems(Request.Cookies["basketId"]);
         if (basket == null) return BadRequest("Unable to retrieve basket");
 
-
-        if (quantity <= 0) throw new ArgumentException("Quantity must be greater than zero.");
-        if (quantity > basket.Items.FirstOrDefault(i => i.ProductId == productId)?.Quantity) 
-            throw new ArgumentException("Quantity to remove exceeds quantity in basket.");
             
         basket.RemoveItem(productId, quantity);
-        product.QuantityInStock += quantity;
-
 
         var result = await context.SaveChangesAsync() > 0;
         if (result) return Ok();
