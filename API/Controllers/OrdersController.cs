@@ -1,6 +1,4 @@
-using System;
 using API.Data;
-using API.DTOs;
 using API.Entities;
 using API.Entities.OrderAggregate;
 using API.ExtensionMethods;
@@ -72,9 +70,10 @@ public class OrdersController(StoreContext context) : BaseApiController
 
             context.Orders.Add(order);
         }
-
-        context.Baskets.Remove(basket);
-        Response.Cookies.Delete("basketId");
+        else
+        {
+            order.OrderItems = items;
+        }
 
         var result = await context.SaveChangesAsync() > 0;
         if (!result) return BadRequest("Problem creating order");
