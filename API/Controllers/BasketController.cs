@@ -3,19 +3,20 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.ExtensionMethods;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-public class BasketController(StoreContext context) : BaseApiController
+public class BasketController(StoreContext context, IMapper mapper) : BaseApiController
 {
     [HttpGet]
     public async Task<ActionResult<BasketDto>> GetBasket()
     {
         var basket = await context.Baskets.GetBasketWithItems(Request.Cookies["basketId"]);
         if (basket == null) return NoContent();
-        return basket.ToDto();
+        return mapper.Map<BasketDto>(basket);
     }
 
     [HttpPost]
@@ -32,7 +33,7 @@ public class BasketController(StoreContext context) : BaseApiController
         product.QuantityInStock -= quantity;
 
         var result = await context.SaveChangesAsync() > 0;
-        if (result) return CreatedAtAction(nameof(GetBasket), basket.ToDto());
+        if (result) return CreatedAtAction(nameof(GetBasket), basket.ToDto(mapper));
 
         return BadRequest("Problem updating basket");
     }

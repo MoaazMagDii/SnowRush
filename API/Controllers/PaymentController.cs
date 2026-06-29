@@ -4,6 +4,7 @@ using API.DTOs;
 using API.Entities.OrderAggregate;
 using API.ExtensionMethods;
 using API.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,8 @@ using Stripe;
 namespace API.Controllers;
 
 public class PaymentsController(PaymentService paymentService, 
-    StoreContext context, ILogger<PaymentsController> logger, IConfiguration config) : BaseApiController
+    StoreContext context, ILogger<PaymentsController> logger, 
+    IConfiguration config, IMapper mapper) : BaseApiController
 {
     [Authorize]
     [HttpPost]
@@ -36,7 +38,7 @@ public class PaymentsController(PaymentService paymentService,
             if (!result) return BadRequest("Problem updating basket with intent");
         }
 
-        return basket.ToDto();
+        return basket.ToDto(mapper);
     }
 
     [HttpPost("webhook")]

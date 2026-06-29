@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
 using API.Services;
+using API.RequestHelpers;
 
 var builder = WebApplication.CreateBuilder(args);
 Env.Load("variable.env");
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddCors();
+builder.Services.AddAutoMapper(cfg => { }, typeof(Program));
 builder.Services.AddTransient<ExceptionMiddleware>();
 builder.Services.AddScoped<PaymentService>();
 
