@@ -10,10 +10,11 @@ public class MappingProfiles : Profile
     {
        
         CreateMap<Product, ProductDto>();
-
         CreateMap<BasketItem, BasketItemDto>();
-
         CreateMap<Basket, BasketDto>();
+
+        CreateMap<CreateProductDto, Product>();
+        CreateMap<UpdateProductDto, Product>();
         
     }
 }

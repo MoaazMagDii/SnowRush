@@ -6,12 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
 using API.Services;
 using API.RequestHelpers;
+using SnowRush.API.RequestHelpers;
 
 var builder = WebApplication.CreateBuilder(args);
 Env.Load("variable.env");
 builder.Configuration.AddEnvironmentVariables();
 
 // Add services to the container.
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(options =>
 {
@@ -21,6 +23,7 @@ builder.Services.AddCors();
 builder.Services.AddAutoMapper(cfg => { }, typeof(Program));
 builder.Services.AddTransient<ExceptionMiddleware>();
 builder.Services.AddScoped<PaymentService>();
+builder.Services.AddScoped<ImageService>();
 
 builder.Services.AddIdentityApiEndpoints<User>(opt =>
 {

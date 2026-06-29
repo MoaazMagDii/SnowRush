@@ -16,7 +16,7 @@ public class BasketController(StoreContext context, IMapper mapper) : BaseApiCon
     {
         var basket = await context.Baskets.GetBasketWithItems(Request.Cookies["basketId"]);
         if (basket == null) return NoContent();
-        return mapper.Map<BasketDto>(basket);
+        return basket.ToDto(mapper);
     }
 
     [HttpPost]

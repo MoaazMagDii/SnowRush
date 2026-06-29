@@ -67,37 +67,41 @@ public class DbInitializer
                 Name = "Product 1",
                 Description = "Lorem ipsum dolor tosuere, ma eros quis urna.",
                 Price = 20000,
-                PictureUrl = "/images/products/sb-ang1.png",
-                Brand = "Angular",
-                Type = "Boards",
-                QuantityInStock = 100
+                PictureUrl = "https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766814/glove-code1_jjctpf.webp",
+                Brand = "NetCore",
+                Type = "Gloves",
+                QuantityInStock = 100,
+                PublicId = "glove-code1_jjctpf"
             },
             new() {
                 Name = "Product 2",
                 Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
                 Price = 15000,
-                PictureUrl = "/images/products/sb-ang2.png",
-                Brand = "React",
-                Type = "Hats",
-                QuantityInStock = 100
+                PictureUrl = "https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766813/boot-ang1_ft57yo.webp",
+                Brand = "Redis",
+                Type = "Boots",
+                QuantityInStock = 100,
+                PublicId = "boot-ang1_ft57yo"
             },
             new() {
                 Name = "Product 3",
                 Description = "Lorem ipsum dolor tosuere, ma eros quis urna.",
                 Price = 18000,
-                PictureUrl = "/images/products/sb-core1.png",
+                PictureUrl = "https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766813/hat-core1_cz3lad.webp",
                 Brand = "NetCore",
-                Type = "Gloves",
-                QuantityInStock = 100
+                Type = "hat",
+                QuantityInStock = 100,
+                PublicId = "hat-core1_cz3lad"
             },
             new() {
                 Name = "Product 4",
                 Description = "Lorem ipsum dolor tosuere, ma eros quis urna.",
                 Price = 30000,
-                PictureUrl = "/images/products/sb-core2.png",
+                PictureUrl = "https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766812/sb-ang1_kzg0dp.webp",
                 Brand = "Redis",
-                Type = "Boots",
-                QuantityInStock = 100
+                Type = "Board",
+                QuantityInStock = 100,
+                PublicId = "sb-ang1_kzg0dp"
             },
         };
 
