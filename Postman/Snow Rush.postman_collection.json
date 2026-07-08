@@ -1,0 +1,761 @@
+{
+  "info": {
+    "_postman_id": "3a968279-3c62-47c1-ac7a-90bdf9abfeb2",
+    "name": "Snow Rush",
+    "description": "# Snow Rush API\n\nSnow Rush is an e-commerce REST API built for a ski and snowboard shop. It provides a complete backend for managing products, user authentication, shopping baskets, and order processing — everything needed to power a modern winter sports retail experience.\n\n---\n\n## Feature Areas\n\n### Authentication\nHandles user registration, login (for both regular users and admins), retrieving authenticated user info, and logout. All protected endpoints require a valid token obtained after login.\n\n### Products\nFull product management including listing all products, retrieving a single product, creating and editing products with file uploads, and deleting products. Admin privileges are required for write operations.\n\n### Filtering\nAdvanced product discovery through sorting, searching, filtering by brand and/or type, combining multiple filters, and pagination. Use these endpoints to build rich product browsing experiences.\n\n### Basket\nManage the shopping basket — retrieve the current basket, add items, and remove items. The basket is tied to the authenticated user's session.\n\n### Orders & Payments\nCreate payment intents, place orders, retrieve a list of orders, and get detailed information about a specific order. Integrates with a payment provider to handle checkout securely.\n\n---\n\n## Getting Started\n\n### 1. Set the Base URL\nAll requests use the `{{url}}` variable as the base URL. Before making any requests, set this variable in your active environment:\n\n- Open the **DEV** environment (or create a new one)\n- Add a variable named `url` and set its value to the base URL of the Snow Rush API (e.g., `https://your-api-host.com`)\n\n### 2. Authenticate\nYou must authenticate before accessing protected endpoints:\n\n1. Use the **Register** request in the **Authentication** folder to create a new account, or use **Login** if you already have one.\n2. After a successful login, copy the token from the response.\n3. Store the token in your environment (e.g., as `{{token}}`) and ensure your requests include it in the `Authorization` header.\n\n> **Admin access:** Use the **Login (Admin)** request to authenticate as an admin and unlock product management endpoints.\n\n### 3. Start Making Requests\nOnce authenticated, you can explore the full API:\n- Browse and filter products via the **Products** and **Filtering** folders\n- Add items to your cart using the **Basket** folder\n- Place and track orders through the **Orders** folder\n\n---\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29665995"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "RegisterUser",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"sam@test.com\",\n    \"password\": \"Pa$$w0rd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/account/register",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "account",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"sam@test.com\",\n    \"password\": \"Pa$$w0rd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/login?useCookies=true",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "useCookies",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@test.com\",\n    \"password\": \"Pa$$w0rd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/login?useCookies=true",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "useCookies",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user info",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/account/user-info",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "account",
+                "user-info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"sam@test.com\",\n    \"password\": \"Pa$$w0rd\"\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/account/logout",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "account",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get Product List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products/2",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Product With File",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "test",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "test",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2000",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/MAIN/Data/Projects/courseAssets/images/hero1.jpg"
+                },
+                {
+                  "key": "type",
+                  "value": "Hats",
+                  "type": "text"
+                },
+                {
+                  "key": "brand",
+                  "value": "Angular",
+                  "type": "text"
+                },
+                {
+                  "key": "quantityInStock",
+                  "value": "100",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/api/products",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Product With File",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Updated",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "{{$randomLoremParagraph}}",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "2000",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/MAIN/Data/Projects/courseAssets/images/hero3.jpg"
+                },
+                {
+                  "key": "type",
+                  "value": "Hats",
+                  "type": "text"
+                },
+                {
+                  "key": "brand",
+                  "value": "Angular",
+                  "type": "text"
+                },
+                {
+                  "key": "quantityInStock",
+                  "value": "100",
+                  "type": "text"
+                },
+                {
+                  "key": "id",
+                  "value": "5",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/api/products",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/products/5",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Filtering",
+      "item": [
+        {
+          "name": "Get Products OrderedBy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products?orderBy=priceDesc",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "orderBy",
+                  "value": "priceDesc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products?searchTerm=board",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "searchTerm",
+                  "value": "board"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search & order products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products?searchTerm=product&orderBy=priceDesc",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "searchTerm",
+                  "value": "product"
+                },
+                {
+                  "key": "orderBy",
+                  "value": "priceDesc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter products brands",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products?brands=NetCore",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "brands",
+                  "value": "NetCore"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter products types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products?types=boots",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "types",
+                  "value": "boots"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter brands&types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products?types=boots&brands=redis,angular",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "types",
+                  "value": "boots"
+                },
+                {
+                  "key": "brands",
+                  "value": "redis,angular"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "pageNumber",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "2",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Filters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products/filters",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "filters"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Basket",
+      "item": [
+        {
+          "name": "Get Basket",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/basket",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "basket"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add item to basket",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/basket?productId=2&quantity=1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "basket"
+              ],
+              "query": [
+                {
+                  "key": "productId",
+                  "value": "2"
+                },
+                {
+                  "key": "quantity",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove item from basket",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/basket?productId=1&quantity=1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "basket"
+              ],
+              "query": [
+                {
+                  "key": "productId",
+                  "value": "1"
+                },
+                {
+                  "key": "quantity",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Create payment intent",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/payments",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "payments"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"country\": \"Egypt\",\n    \"government\": \"Cairo\",\n    \"district\": \"Nasr City\",\n    \"street\": \"100 Centre Street\",\n    \"buildingNumber\": \"101\",\n    \"postal_code\": \"10013\",\n    \"landMark\": \"NY\"\n\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/orders",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/orders",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/orders/1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "orders",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": "https://localhost:5001",
+      "type": "string"
+    }
+  ]
+}
