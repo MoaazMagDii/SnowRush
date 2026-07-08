@@ -4,7 +4,7 @@ Many small and medium-sized businesses struggle to build a scalable and secure e
 
 Traditional implementations often suffer from tightly coupled architecture, insecure authentication mechanisms, poor scalability, and difficult maintenance.
 
-SnowRush addresses these challenges by providing a modern RESTful backend built with ASP.NET Core that follows Clean Architecture principles and industry best practices. The system offers role-based authorization, Stripe payment integration, Cloudinary image management, efficient database access using Entity Framework Core, and a modular architecture that is easy to extend and maintain.
+SnowRush addresses these challenges by providing a modern RESTful backend built with ASP.NET Core that follows industry best practices. The system offers role-based authorization, Stripe payment integration, Cloudinary image management, efficient database access using Entity Framework Core, and a modular architecture that is easy to extend and maintain.
 
 ---
 
