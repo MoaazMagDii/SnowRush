@@ -13,18 +13,14 @@ SnowRush addresses these challenges by providing a modern RESTful backend built 
 - User Registration & Login
 - Role-Based Authorization
 - Product Management
-- Categories & Brands
 - Shopping Cart
 - Order Management
 - Stripe Payment Integration
 - Cloudinary Image Upload
 - Pagination
 - Filtering, Sorting, and Searching
-- Repository Pattern
-- Unit of Work
 - AutoMapper
 - Global Exception Handling
-- API Validation
 - Postman Documentation
 
 ---
@@ -38,40 +34,36 @@ SnowRush addresses these challenges by providing a modern RESTful backend built 
 - Entity Framework Core
 - SQLite
 
+### Database
+
+- Entity Framework Core is used with SQLite.
+  
 ### Authentication
 
 - ASP.NET Identity
-
-### Services
-
-- Cloudinary
-- Stripe
-
-### Documentation
-
-- Postman
-
-### Mapping
-
-- AutoMapper
-
----
-
+  
 ### Payments
 
 Integrated with **Stripe** to support secure online payments.
-
----
 
 ### Image Upload
 
 Product images are stored securely using **Cloudinary**.
 
+- https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766814/glove-code1_jjctpf.webp
+- https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766813/boot-ang1_ft57yo.webp
+- https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766813/hat-core1_cz3lad.webp
+- https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766812/sb-ang1_kzg0dp.webp
+
 ---
 
-## Database
+## API Documentation
 
-Entity Framework Core is used with SQLite.
+The API endpoints are documented using a Postman collection.
+
+- Import `Postman/SnowRush.postman_collection.json` into Postman to test the API.
+- The collection includes authentication, products, basket, orders, and payment endpoints with example requests.
+- https://documenter.getpostman.com/view/29665995/2sBY4JxNga
 
 ---
 
