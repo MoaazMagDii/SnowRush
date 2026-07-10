@@ -32,7 +32,6 @@ SnowRush addresses these challenges by providing a modern RESTful backend built 
 - ASP.NET Core Web API
 - C#
 - Entity Framework Core
-- SQLite
 
 ### Database
 
@@ -48,7 +47,7 @@ Integrated with **Stripe** to support secure online payments.
 
 ### Image Upload
 
-Product images are stored securely using **Cloudinary**.
+Product images are collected and stored securely using **Cloudinary**.
 
 - https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766814/glove-code1_jjctpf.webp
 - https://res.cloudinary.com/dywlgfpbc/image/upload/v1782766813/boot-ang1_ft57yo.webp
